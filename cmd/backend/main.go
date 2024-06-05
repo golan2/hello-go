@@ -2,16 +2,28 @@ package main
 
 import (
 	"fmt"
-	"hello-go/pkg/interfaces"
+	"strings"
+	"time"
 )
 
 func main() {
-	sa := interfaces.SimpleIntAggregator{}
-	res := Aggregate(&sa, nil)
-	fmt.Printf("%v\n", res)
+	t1 := time.Now()
+	t2 := t1.Add(time.Minute)
+	fmt.Printf("__%s\n", convertTimeRangeToWhereClause2(&t1, &t2))
+	fmt.Printf("__%s\n", convertTimeRangeToWhereClause2(&t1, nil))
+	fmt.Printf("__%s\n", convertTimeRangeToWhereClause2(nil, &t2))
+	fmt.Printf("__%s\n", convertTimeRangeToWhereClause2(nil, nil))
 }
 
-func Aggregate(agg interfaces.Aggregator[int], values []int) []int {
-	aggregate, _ := agg.Aggregate(values)
-	return aggregate
+func convertTimeRangeToWhereClause2(from, to *time.Time) string {
+	var conditions []string
+
+	if from != nil {
+		conditions = append(conditions, fmt.Sprintf("episode_start >= '%s'", from.Format("2006-01-02 15:04:05")))
+	}
+	if to != nil {
+		conditions = append(conditions, fmt.Sprintf("episode_start <= '%s'", to.Format("2006-01-02 15:04:05")))
+	}
+
+	return strings.Join(conditions, " AND ")
 }
