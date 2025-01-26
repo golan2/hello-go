@@ -5,6 +5,7 @@ import (
 	"math/rand"
 )
 
+//goland:noinspection GoUnusedExportedFunction
 func PlayWithRandom() {
 	arr := make([]int, 10)
 	for i := 0; i < 10; i++ {
