@@ -5,6 +5,7 @@ import (
 	"math"
 )
 
+//goland:noinspection GoUnusedExportedFunction
 func FindKthBit() {
 	for k := 0; k < 16; k++ {
 		fmt.Printf("%v", findKthBit(4, k))

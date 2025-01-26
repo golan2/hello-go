@@ -5,6 +5,7 @@ import (
 	"maps"
 )
 
+//goland:noinspection GoUnusedExportedFunction
 func Mmain() {
 	r := gett()
 
