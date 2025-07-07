@@ -1,13 +1,12 @@
 package main
 
 import (
-	"hello-go/pkg/collections"
+	"hello-go/pkg/importgraph"
 )
 
 func main() {
-	runCollections()
-}
 
-func runCollections() {
-	collections.Go()
+	//unseen.GenerateDummyData()
+	importgraph.StartJohnnyWalker()
+
 }
